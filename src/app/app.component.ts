@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FilmAddEditComponent } from './film-add-edit/film-add-edit.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private _dialog: MatDialog){
+
+  }
+  openFilmAddEditForm(){
+    this._dialog.open(FilmAddEditComponent);
+  }
 }
