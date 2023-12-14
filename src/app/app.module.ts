@@ -16,13 +16,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RealisateurComponent } from './realisateur/realisateur.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmAddEditComponent
+    FilmAddEditComponent,
+    RealisateurComponent,
   ],
   imports: [
     BrowserModule,

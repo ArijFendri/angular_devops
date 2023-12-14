@@ -10,6 +10,7 @@ export class FilmService {
    httpOptions = {
     headers: new HttpHeaders(
       {
+        'Accept':'*/*',
         'Content-Type': 'application/json',
       }
     )
@@ -18,6 +19,15 @@ export class FilmService {
 
   addFilm(data:any): Observable<any>{
     return this._http.post('http://localhost:9696/film/ajout',data, this.httpOptions);
+  }
+  getAllCategories(): Observable<any>{
+    return this._http.get('http://localhost:9696/categorie/');
+  }
+  GetAllRealisateur(): Observable<any>{
+    return this._http.get('http://localhost:9696/realisateur/');
+  }
+  getAllFilms(): Observable<any>{
+    return this._http.get('http://localhost:9696/film/');
   }
 
 }

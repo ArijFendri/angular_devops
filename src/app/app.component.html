@@ -6,4 +6,29 @@
     Ajouter un film
   </button>
 
+
 </mat-toolbar>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Date Sortie</th>
+      <th scope="col">Categorie</th>
+      <th scope="col">realisateur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let f of films">
+      <th scope="row">{{f.id}}</th>
+      <td>{{f.nomFilm}}</td>
+      <td>{{f.dateSortie}}</td>
+      <td>{{f.categorie?.type || 'non classé'}}</td>
+      <td>{{f.realisateur?.nomRealisateur || 'inconnu'}}</td>
+      <!-- <td><img src="{{'f.afficheFilm'}}" alt=""></td> -->
+    </tr>
+    
+  </tbody>
+</table>
