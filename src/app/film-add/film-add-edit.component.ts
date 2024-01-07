@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { FilmService } from '../services/film.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -32,14 +32,15 @@ export class FilmAddEditComponent implements OnInit{
   this.realisateurs=r
 })
 
-      this.filmForm = this._fb.group({
-          nomFilm: '',
-          dateSortie: '',
-          afficheFilm: '',
-          realisateur :'' ,
-          categorie:"" ,
-      })//validateur
+this.filmForm = this._fb.group({
+  nomFilm: ['', Validators.required],
+  dateSortie: ['', Validators.required],
+  afficheFilm: ['', Validators.required],
+  realisateur: ['', Validators.required],
+  categorie: ['', Validators.required],
+});
       }
+      
 
 ngOnInit(): void {
   this.filmForm.patchValue(this.data);

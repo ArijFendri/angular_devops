@@ -2,7 +2,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { FilmAddEditComponent } from './film-add-edit/film-add-edit.component';
+import { FilmAddEditComponent } from './film-add/film-add-edit.component';
 import { ListefilmComponent } from './listefilm/listefilm.component';
 
 

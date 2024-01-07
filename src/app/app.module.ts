@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { FilmAddEditComponent } from './film-add-edit/film-add-edit.component';
+import { FilmAddEditComponent } from './film-add/film-add-edit.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -22,6 +22,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SignupComponent } from './signup/signup.component';
 import { ListefilmComponent } from './listefilm/listefilm.component';
+import { FilmEditComponent } from './film-edit/film-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ListefilmComponent } from './listefilm/listefilm.component';
     LoginComponent,
     SignupComponent,
     ListefilmComponent,
+    FilmEditComponent,
   ],
   imports: [
     BrowserModule,

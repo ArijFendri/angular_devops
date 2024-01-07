@@ -1,6 +1,7 @@
+import { FilmEditComponent } from './../film-edit/film-edit.component';
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FilmAddEditComponent } from '../film-add-edit/film-add-edit.component';
+import { FilmAddEditComponent } from '../film-add/film-add-edit.component';
 import { FilmService } from '../services/film.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
@@ -9,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-listefilm',
   templateUrl: './listefilm.component.html',
@@ -16,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ListefilmComponent {
   title = 'app';
+
 
 
 
@@ -86,7 +89,7 @@ export class ListefilmComponent {
   }
 
   openEditForm(data: any){
-    this._dialog.open(FilmAddEditComponent, {
+    this._dialog.open(FilmEditComponent, {
     data,
 
   });

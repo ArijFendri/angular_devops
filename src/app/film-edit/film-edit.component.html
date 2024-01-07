@@ -1,0 +1,63 @@
+<p>film-edit works!</p>
+
+
+<div mat-dialog-title>
+  <h1> Film Form </h1>
+  </div>
+
+  <form [formGroup]="filmForm" (ngSubmit)="onFormSubmit()">
+
+
+  <div mat-dialog-content class="content">
+  <div class="row">
+  <mat-form-field appearance="outline">
+  <mat-label>Nom du Film</mat-label>
+  <input matInput type="text" placeholder="" formControlName="nomFilm">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline">
+  <mat-label>Date de sortie</mat-label>
+  <input matInput [matDatepicker]="picker2" formControlName="dateSortie">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix  [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline">
+  <mat-label> Affiche Film </mat-label>
+  <input matInput formControlName="afficheFilm">
+  </mat-form-field>
+  </div>
+  </div>
+
+
+  <mat-form-field appearance="outline">
+  <mat-label>Realisateur</mat-label>
+  <mat-select formControlName="realisateur">
+  <mat-option *ngFor="let realisateur of realisateurs" [value]="realisateur.idRealisateur">
+  {{ realisateur.nomRealisateur }}
+  </mat-option>
+  </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field>
+  <mat-label>Categorie</mat-label>
+  <mat-select formControlName="categorie">
+  <mat-option *ngFor="let categorie of categories" [value]="categorie.id">
+  {{ categorie.type }}
+  </mat-option>
+  </mat-select>
+  </mat-form-field>
+
+
+
+  <div mat-dialog-actions class="action">
+  <button mat-raised-button type="button"> Cancel </button>
+  <button mat-raised-button color="primary" type="submit"> Valider </button>
+  </div>
+
+
+  </form>
