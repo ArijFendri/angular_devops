@@ -29,5 +29,9 @@ export class FilmService {
   getAllFilms(): Observable<any>{
     return this._http.get('http://localhost:9696/film/');
   }
+  deleteFilm(id: number): Observable<any> {
+    return this._http.get('http://localhost:9696/film/supprimer/'+id);
+
+  }
 
 }

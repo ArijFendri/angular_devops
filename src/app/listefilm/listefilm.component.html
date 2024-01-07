@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+  <span>My Application</span>
+  <span class="example-spacer"></span>
+  <button button mat-raised-button (click)="openFilmAddEditForm()">
+    Ajouter un film
+  </button>
+</mat-toolbar>
+
+
+<div class="container">
+
+  <form th:action="@{/user/index}">
+      <div>
+          <label for="mc"> Mot Cle </label>
+          <input type="text" id="mc" name="mc" th:value ="${mc}" />
+
+          <button class="btn btn-primary" type="submit" id="button-search">
+              <i class="fas fa-search"></i> Rechercher
+          </button>
+      </div>
+  </form>
+
+      <h1 class="text-center">Liste des Films </h1>
+      <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+          <tr  class="text-center">
+
+              <th>ID</th>
+              <th>Nom Film</th>
+              <th>Date Sortie</th>
+              <th>Affiche Film</th>
+              <th>Realisateur</th>
+              <th>Categorie</th>
+              <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of films">
+
+              <th scope="row">{{ f.id }}</th>
+              <td>{{ f.nomFilm }}</td>
+              <td>{{ f.dateSortie }}</td>
+              <td></td>
+              <td>{{ f.realisateur?.nomRealisateur || 'inconnu' }}
+              <td>{{ f.categorie?.type || 'non classé' }}</td>
+
+
+
+
+              <td *ngIf="isadmin" class="text-center">
+                <i class="btn-danger fa fa-trash"> <a  class="" [attr.data-id]="f.id"  (click)="deleteFilm(f.id)">  </a> </i>
+
+
+
+                  <a *ngIf="isadmin" (click)="openEditForm(f)"> <i class="btn-warning fa fa-edit" > </i> </a>
+              </td>
+
+
+          </tr>
+          </tbody>
+      </table>
+  <div>
+      <ul class="nav nav-pills">
+          <li th:each="i,c:${pages}" >
+             <a th:href="@{/user/index(mc=${mc},page=${c.index})}"
+             th:text="${c.index+1}"
+                      th:class="${current==c.index? 'btn btn-primary mx-2' : 'btn btn-outline-primary mx-2'}"></a>
+          </li>
+      </ul>
+  </div>
+
+
+
