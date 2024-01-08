@@ -55,4 +55,14 @@ node {
         milestone()
         echo "Deploying..."
     }
+    stage('Deploy to Kubernetes') {
+    steps {
+        script {
+            def kubectlCmd = "kubectl apply -f path/to/kubernetes.yml"
+            sh "${kubectlCmd}"
+        }
+    }
 }
+
+}
+

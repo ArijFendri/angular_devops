@@ -1,0 +1,46 @@
+# kubernetes.yml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: your-namespace
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular
+  namespace: angular
+spec:
+  replicas: 3  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: angular
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+      - name: your-app
+        image: dockerimage:latest  # Replace with your Docker image details
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular
+  namespace: your-namespace
+spec:
+  selector:
+    app: angular
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer  # Use LoadBalancer if you're deploying to a cloud provider that supports it
+
