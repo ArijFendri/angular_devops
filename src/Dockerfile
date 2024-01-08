@@ -1,15 +1,13 @@
-# Use a lightweight base image
-FROM nginx:1.15
+#1st Stage
+FROM node:latest as build-stage
+WORKDIR /app
+COPY package.json /app/
+RUN npm install
+COPY . /app/
+RUN npm run build
 
-# Set the working directory in the container
-WORKDIR /usr/share/nginx/html
-
-# Copy the 'dist' folder from your locally built Angular app
-COPY dist/app .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80
+#2nd Stage to add change
+FROM nginx:alpine
+COPY --from=build-stage /app/dist/angular /usr/share/nginx/html
 EXPOSE 80
-
-# Command to run the nginx server
 CMD ["nginx", "-g", "daemon off;"]
