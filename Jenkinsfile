@@ -2,6 +2,7 @@ pipeline {
     agent none
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dh_cred')
+        DOCKER_CONFIG = "${JENKINS_HOME}/.docker"
     }
 
     stages {
@@ -15,17 +16,23 @@ pipeline {
         stage('Init'){
             agent any
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                script {
+                    mkdir("${DOCKER_CONFIG}")
+                    sh """
+                        echo '${DOCKERHUB_CREDENTIALS_PSW}' | docker login -u '${DOCKERHUB_CREDENTIALS_USR}' --password-stdin
+                    """
+                }
             }
         }
 
         stage('Build & Push'){
             agent any
             steps {
-                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/films:$BUILD_ID .'
-                sh 'docker push $DOCKERHUB_CREDENTIALS_USR/films:$BUILD_ID'
-                sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/films:$BUILD_ID'
-
+                script {
+                    sh "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/films:${BUILD_ID} ."
+                    sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/films:${BUILD_ID}"
+                    sh "docker rmi ${DOCKERHUB_CREDENTIALS_USR}/films:${BUILD_ID}"
+                }
             }
         }
 
@@ -35,6 +42,5 @@ pipeline {
                 sh 'docker logout'
             }
         }
-
     }
 }
